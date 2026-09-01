@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Azufr3 · Félix Vergara</title>
-  <meta name="description" content="AI Video Specialist &amp; Generative VFX Artist. ComfyUI · TouchDesigner · Kling · Veo."/>
+  <title>Azufr3 · TEST — Mejoras en progreso</title>
+  <meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="Félix Gustavo Vergara Durán — AI Cinematic Director & Generative Video Specialist. Kling 3.0 · Veo 3.1 · ComfyUI · Motion Capture."/>
   <meta name="theme-color" content="#0a0a0a"/>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23DCE318'/%3E%3C/svg%3E">
 
@@ -84,44 +85,113 @@
       padding: 1rem clamp(1.25rem, 4vw, 2.5rem);
       z-index: 50;
       pointer-events: none;
+      background: rgba(29, 29, 35, 0.75);
+      border-bottom: 1px solid rgba(220, 227, 24, 0.18);
+      transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
     }
+    .nav-scroll-decoration {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(220, 227, 24, 0.4) 20%,
+        rgba(220, 227, 24, 0.6) 50%,
+        rgba(220, 227, 24, 0.4) 80%,
+        transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s var(--ease);
+      z-index: 49;
+      pointer-events: none;
+    }
+    .nav.scrolled ~ .nav-scroll-decoration { opacity: 1; }
     .nav > * { pointer-events: auto; }
     .nav__logo {
-      display: inline-flex; align-items: center; gap: 0.55rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
       font-family: 'Geist Mono', monospace;
-      font-size: 0.875rem; font-weight: 500;
-      letter-spacing: 0.02em;
+      font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--fg);
     }
     .nav__logo .mark {
-      width: 22px; height: 22px;
-      background: var(--accent);
-      display: grid; place-items: center;
+      width: 24px; height: 16px;
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
     }
-    .nav__logo .mark svg { display: block; }
+    .nav__logo .mark svg {
+      width: 100%; height: 100%;
+      display: block;
+      stroke: var(--accent);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .nav__logo:hover .mark {
+      transform: scale(1.15) translateY(-1px);
+      opacity: 1;
+    }
+    .nav__links a:active { color: var(--accent); }
     .nav__links { display: flex; gap: 1.75rem; font-size: 0.875rem; color: var(--fg-muted); }
-    .nav__links a { transition: color 0.2s var(--ease); }
+    .nav__links a {
+      color: var(--fg-muted);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.25s var(--ease);
+    }
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s var(--ease);
+    }
     .nav__links a:hover { color: var(--fg); }
+    .nav__links a:hover::after { width: 100%; }
     .nav__cta {
       font-family: 'Geist Mono', monospace;
-      font-size: 0.8rem;
-      padding: 0.6rem 1rem;
-      background: var(--fg);
-      color: var(--bg);
-      border: 1px solid var(--fg);
-      transition: all 0.2s var(--ease);
+      font-size: 0.75rem;
+      padding: 0.65rem 1.1rem;
+      background: transparent;
+      color: var(--fg);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      transition: all 0.25s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .nav__cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: -1;
     }
     .nav__cta:hover {
-      background: var(--accent);
+      color: var(--bg);
       border-color: var(--accent);
-      box-shadow: 0 0 16px rgba(220, 227, 24, 0.5);
-      transform: scale(1.03);
+      transform: scale(1.04);
+      box-shadow: 0 0 20px rgba(220, 227, 24, 0.4);
     }
+    .nav__cta:hover::before { transform: scaleX(1); }
     /* Nav backdrop: separates nav from content below on scroll */
     .nav.scrolled {
-      background: rgba(13, 13, 15, 0.82);
+      background: rgba(13, 13, 15, 0.92);
       border-bottom: 1px solid var(--line);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
     @media (max-width: 700px) { .nav__links { display: none; } }
 
@@ -137,7 +207,7 @@
       justify-content: center;
       overflow: hidden;
     }
-    /* Subtle blurred reel as background texture — less opaque, more blur */
+    /* Subtle blurred reel as background texture: less opaque, more blur */
     .hero__video-bg {
       position: absolute;
       inset: 0;
@@ -205,16 +275,20 @@
       margin-bottom: 1.25rem;
     }
     .hero__title {
-      font-size: clamp(2.25rem, 5.5vw, 4.25rem);
-      line-height: 1.08;
+      font-size: clamp(2.1rem, 5vw, 3.9rem);
+      line-height: 1.1;
       font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 1rem;
       color: var(--fg);
+      max-width: 100%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
     .hero__title em {
       font-style: normal;
       color: var(--accent);
+      display: inline;
     }
     .hero__sub {
       font-size: clamp(0.95rem, 1.3vw, 1.05rem);
@@ -230,21 +304,34 @@
       align-items: center;
       gap: 0.5rem;
       font-family: 'Geist Mono', monospace;
-      font-size: 0.825rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      padding: 0.8rem 1.5rem;
+      padding: 0.85rem 1.6rem;
+      background: transparent;
+      color: var(--fg);
       border: 1px solid var(--line);
-      background: var(--fg);
-      color: var(--bg);
       border-radius: 4px;
-      transition: all 0.2s var(--ease);
+      transition: all 0.25s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero__cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: -1;
     }
     .hero__cta:hover {
-      background: var(--accent);
-      border-color: var(--accent);
       color: var(--bg);
-      transform: translateY(-1px);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 0 24px rgba(220, 227, 24, 0.5);
     }
+    .hero__cta:hover::before { transform: scaleX(1); }
 
     /* ---------- HERO MOBILE ---------- */
     @media (max-width: 700px) {
@@ -299,51 +386,84 @@
     }
     .s__head p { color: var(--fg-muted); font-size: 1rem; max-width: 38ch; }
 
-    /* ---------- SERVICES (clean cards: hover lights up with azufre) ---------- */
+    /* ---------- SERVICES (taste-skill: echos visuales por card, hover depth) ---------- */
     .services {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       border-top: 1px solid var(--line);
       border-left: 1px solid var(--line);
+      gap: 0;
     }
     .service {
       position: relative;
-      padding: 2.5rem 2rem;
+      padding: 2.2rem 2rem 2rem;
       border-right: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
       display: flex; flex-direction: column; gap: 1rem;
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
-      transition: background 0.3s var(--ease), transform 0.25s var(--ease), box-shadow 0.3s var(--ease);
+      background: linear-gradient(165deg, var(--bg) 0%, var(--bg-soft) 60%, var(--bg-soft-2) 100%);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+      overflow: hidden;
     }
+    /* Echo glow: azufre ring that fades in on hover */
+    .service::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--accent) 0%, transparent 40%, transparent 60%, var(--accent) 100%) border-box;
+      -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+      mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.35s var(--ease);
+      pointer-events: none;
+    }
+    .service:hover::after { opacity: 0.7; }
+    /* Top accent bar: slides in from left on hover */
     .service::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0;
       height: 2px;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--accent), rgba(220, 227, 24, 0.4));
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.3s var(--ease);
-    }
-    /* HOVER state: card lights up azufre, lifts, gets tinted shadow */
-    .service:hover {
-      background: var(--accent);
-      transform: translateY(-4px);
-      box-shadow:
-        0 1px 0 rgba(255,255,255,0.15) inset,
-        0 24px 60px -20px rgba(220, 227, 24, 0.45),
-        0 8px 24px -8px rgba(0, 0, 0, 0.6);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .service:hover::before { transform: scaleX(1); }
+    /* HOVER: lift + echo shadow, NOT full-swap-to-accent (taste-skill anti-slap) */
+    .service:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 30px 80px -24px rgba(220, 227, 24, 0.5),
+        0 12px 32px -10px rgba(0, 0, 0, 0.7);
+      border-color: rgba(220, 227, 24, 0.15);
+      background: linear-gradient(165deg, var(--bg-soft) 0%, var(--bg-soft-2) 60%, var(--bg-soft) 100%);
+    }
     .service:hover .service__title,
-    .service:hover .service__desc { color: var(--bg); }
-    .service:hover .service__tools { border-top-color: rgba(10,10,10,0.3); }
+    .service:hover .service__desc { color: var(--fg); }
+    .service:hover .service__tools { border-top-color: rgba(220, 227, 24, 0.2); }
     .service:hover .service__tools span {
-      color: var(--bg);
-      border-color: var(--bg);
-      background: var(--accent);
+      color: var(--fg);
+      border-color: rgba(220, 227, 24, 0.3);
+      background: rgba(220, 227, 24, 0.08);
     }
     .service:nth-child(2n) { border-right: 0; }
     .service:nth-last-child(-n+2) { border-bottom: 0; }
+    /* Icono SVG inline por servicio — taste-skill: never text-only cards */
+    .service__icon {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(220, 227, 24, 0.06);
+      border: 1px solid rgba(220, 227, 24, 0.12);
+      border-radius: 8px;
+      flex-shrink: 0;
+      transition: background 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .service__icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .service:hover .service__icon { background: rgba(220, 227, 24, 0.12); border-color: rgba(220, 227, 24, 0.3); transform: scale(1.08); }
     .service__title { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; transition: color 0.25s var(--ease); }
     .service__desc { color: var(--fg-muted); font-size: 0.95rem; max-width: 38ch; line-height: 1.6; transition: color 0.25s var(--ease); }
     .service__tools {
@@ -354,17 +474,24 @@
     }
     .service__tools span {
       font-family: 'Geist Mono', monospace;
-      font-size: 0.7rem;
+      font-size: 0.675rem;
       color: var(--fg-dim);
       padding: 0.35rem 0.7rem;
       border: 1px solid var(--line);
       background: var(--bg);
-      transition: all 0.2s var(--ease);
+      transition: all 0.25s var(--ease);
+      letter-spacing: 0.02em;
+    }
+    .service__tools span:hover {
+      color: var(--fg);
+      border-color: rgba(220, 227, 24, 0.3);
+      background: rgba(220, 227, 24, 0.06);
+      transform: translateY(-1px);
     }
     @media (max-width: 700px) {
       .services { grid-template-columns: 1fr; }
       .service { border-right: 0; }
-      .service:last-child { border-bottom: 0; }
+      .service:last-child { border-bottom: 0; padding: 1.75rem 1.5rem; }
     }
 
     /* ---------- ABOUT (elevated, not just text) ---------- */
@@ -424,7 +551,104 @@
       .about__visual { min-height: 200px; }
     }
 
-    /* ---------- CONTACT ---------- */
+    /* ---------- REFERENCES (proyectos y reconocimientos) ---------- */
+    .references {
+      position: relative;
+      overflow: hidden;
+    }
+    .references__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      border-top: none;
+      margin-top: 0.5rem;
+    }
+    .reference {
+      position: relative;
+      padding: 2rem 1.5rem 1.75rem;
+      border: 1px solid var(--line);
+      background: linear-gradient(165deg, var(--bg-soft) 0%, var(--bg-soft-2) 100%);
+      overflow: hidden;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+    }
+    /* Top accent line: unique per reference, slides on hover */
+    .reference::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), rgba(220, 227, 24, 0.3));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reference:hover::before { transform: scaleX(1); }
+    /* Subtle grain inside reference cards */
+    .reference::after {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
+    .reference:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 20px 50px -20px rgba(220, 227, 24, 0.35), 0 8px 24px -8px rgba(0,0,0,0.5);
+      border-color: rgba(220, 227, 24, 0.15);
+      background: linear-gradient(165deg, var(--bg-soft-2) 0%, var(--bg-soft) 80%);
+    }
+    .reference__year {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.675rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .reference__title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.7rem;
+      color: var(--fg);
+      line-height: 1.2;
+    }
+    .reference__desc {
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+      line-height: 1.6;
+      max-width: 36ch;
+      margin-bottom: 1.2rem;
+    }
+    .reference__meta {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.675rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.05em;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--line);
+    }
+    .reference:nth-child(3n) { border-right: 0; }
+    .reference:nth-last-child(-n+3) { border-bottom: 0; }
+    @media (max-width: 700px) {
+      .references__grid { grid-template-columns: 1fr; }
+      .reference { border-right: 0; }
+      .reference:last-child { border-bottom: 0; }
+    }
+
+    .s__head h2 .section-ribbon {
+      display: inline-flex;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+      color: var(--accent);
+      opacity: 0.7;
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .s__head h2:hover .section-ribbon {
+      opacity: 1;
+      transform: scale(1.1);
+    }
     .contact { padding-bottom: clamp(4rem, 8vw, 6rem); }
     .contact__title {
       font-size: clamp(2rem, 5vw, 3.5rem);
@@ -461,34 +685,38 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 0.8rem 1.6rem;
+      padding: 0.85rem 1.8rem;
       background: var(--accent);
       color: var(--bg);
       border: 1px solid var(--accent);
       border-radius: 6px;
-      transition: all 0.2s var(--ease);
+      transition: all 0.3s var(--ease);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 0 0 0 rgba(220, 227, 24, 0);
     }
     .contact__whatsapp-cta::before {
       content: '';
       position: absolute;
       top: 50%; left: 50%;
       width: 0; height: 0;
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      transition: width 0.5s, height 0.5s;
+      transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .contact__whatsapp-cta:hover::before {
-      width: 240px; height: 240px;
+      width: 300px; height: 300px;
     }
     .contact__whatsapp-cta:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--bg);
-      transform: translateY(-2px);
-      box-shadow: 0 0 24px rgba(220, 227, 24, 0.6);
+      background: #e6e800;
+      border-color: #e6e800;
+      transform: translateY(-3px);
+      box-shadow: 0 0 32px rgba(220, 227, 24, 0.7), 0 8px 32px -8px rgba(0, 0, 0, 0.5);
+    }
+    .contact__whatsapp-cta:active {
+      transform: translateY(-1px) scale(0.98);
+      box-shadow: 0 0 16px rgba(220, 227, 24, 0.5);
     }
     @media (max-width: 600px) { .contact__grid { grid-template-columns: 1fr; gap: 1.5rem; } }
 
@@ -503,9 +731,41 @@
     }
     @media (max-width: 600px) { footer { flex-direction: column; gap: 0.75rem; text-align: center; } }
 
-    /* ---------- Scroll reveal ---------- */
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
-    .reveal.in { opacity: 1; transform: translateY(0); }
+    /* ---------- Scroll reveal (taste-skill: clip-path reveal + stagger) ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      clip-path: inset(0 0 60% 0);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease), clip-path 0.7s var(--ease);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+      clip-path: inset(0 0 0 0);
+    }
+    /* Stagger delays: applied inline via style="--d: 0.1s" etc */
+    .reveal[data-stagger] { transition-delay: var(--d, 0s); }
+    /* Hero elements: fade+scale, not just translateY */
+    .reveal.hero-fade {
+      transform: translateY(24px) scale(0.97);
+      transition: opacity 0.8s var(--ease), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.hero-fade.in {
+      transform: translateY(0) scale(1);
+    }
+    /* Service cards: slide up with staggered delay */
+    .reveal.service-item {
+      transform: translateY(32px);
+      transition: opacity 0.6s var(--ease), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.service-item.in { transform: translateY(0); }
+    /* Section heads: more dramatic intro */
+    .reveal.section-head {
+      transform: translateY(28px);
+      transition: opacity 0.7s var(--ease), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.section-head.in { transform: translateY(0); }
+    /* Strip continues (no reveal needed — it's a marquee) */
 
     ::selection { background: var(--accent); color: var(--bg); }
 
@@ -520,9 +780,25 @@
   <div class="vj-overlay" style="position: fixed; inset: 0; z-index: 0; pointer-events: none;"></div>
 
   <nav class="nav" aria-label="Primary">
+    <div class="nav-scroll-decoration" aria-hidden="true"></div>
     <a href="#top" class="nav__logo">
-      <span class="mark" aria-hidden="true">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2L8 8M8 2L2 8" stroke="#0a0a0a" stroke-width="1.6"/></svg>
+      <span class="mark">
+        <svg viewBox="0 0 50 32" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <!-- Guión izquierdo (-) -->
+          <path d="M1 16 L10 16" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <!-- Sigma: barra superior -->
+          <path d="M14 7 L34 7" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <!-- Sigma: diagonal izquierda -->
+          <path d="M14 7 L19 24" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <!-- Sigma: diagonal derecha -->
+          <path d="M34 7 L29 24" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <!-- Sigma: base -->
+          <path d="M16 24 L27 24" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <!-- Sigma: cola vertical (extensión de la diagonal izquierda hasta abajo) -->
+          <path d="M19 24 L19 30" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <!-- Guión derecho (-) -->
+          <path d="M40 16 L49 16" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
       </span>
       <span>AZUFR3</span>
     </a>
@@ -535,19 +811,6 @@
   </nav>
 
   <header class="hero" id="top">
-    <div class="hero__video-bg" aria-hidden="true">
-      <video
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        poster="assets/video/reel-poster.jpg"
-        aria-hidden="true">
-        <source src="assets/video/reel-loop-15s.mp4" type="video/mp4">
-      </video>
-    </div>
-
     <div class="hero__group">
       <div class="hero__reel" aria-hidden="true">
         <video
@@ -558,18 +821,18 @@
           preload="auto"
           poster="assets/video/reel-poster.jpg"
           id="heroVideo">
-          <source src="assets/video/reel-loop-15s.mp4" type="video/mp4">
+          <source src="assets/video/reel-complete.mp4" type="video/mp4">
         </video>
       </div>
 
-      <div class="hero__copy reveal">
-        <p class="hero__role">Félix Vergara · Bogotá, CO</p>
+      <div class="hero__copy reveal hero-fade">
+        <p class="hero__role">Félix Gustavo Vergara Durán · Director Cinematográfico</p>
         <h1 class="hero__title">
           Diseño los límites donde la <em>IA</em> se vuelve
           <em>cinematografía</em>.
         </h1>
         <p class="hero__sub">
-          AI Video Specialist y Generative VFX Artist. <b>ComfyUI, TouchDesigner, Kling 3.0, Veo 3.1</b>, sumando dirección visual a herramientas que todavía no hablan el idioma del cine.
+          Director audiovisual y tecnólogo creativo. <b>Kling 3.0, Veo 3.1, ComfyUI, Motion Capture</b>, más de 10 años dirigiendo la cámara y ahora extendiendo ese criterio a lo que la IA genera.
         </p>
         <a href="mailto:az1fr3n1trat0@gmail.com" class="hero__cta">
           <span>Construyamos algo que no se pueda ignorar</span>
@@ -583,53 +846,65 @@
   <div class="strip" aria-hidden="true">
     <div class="strip__track">
       <span>AI Video Direction</span>
-      <span>Seedance 2.5</span>
-      <span>Generative VFX</span>
-      <span>TouchDesigner</span>
-      <span>ComfyUI · SDXL · Flux</span>
+      <span>Kling 3.0</span>
+      <span>Veo 3.1</span>
+      <span>Image Generation</span>
+      <span>Python Tools</span>
+      <span>OpenPose</span>
+      <span>MediaPipe</span>
+      <span>MadMapper</span>
       <span>Kling 3.0 · Veo 3.1</span>
-      <span>Video Mapping</span>
-      <span>Real-Time Visuals</span>
-      <span>Data Viz · WebGL</span>
-      <span>AI Video Direction</span>
-      <span>Seedance 2.5</span>
-      <span>Generative VFX</span>
-      <span>TouchDesigner</span>
-      <span>ComfyUI · SDXL · Flux</span>
-      <span>Kling 3.0 · Veo 3.1</span>
-      <span>Video Mapping</span>
-      <span>Real-Time Visuals</span>
-      <span>Data Viz · WebGL</span>
+      <span>Image Generation</span>
+      <span>Python Tools</span>
+      <span>OpenPose</span>
+      <span>MediaPipe</span>
+      <span>MadMapper</span>
     </div>
   </div>
 
   <section class="s" id="services">
     <div class="s__inner">
-      <div class="s__head reveal">
+      <div class="s__head reveal section-head">
         <h2>Lo que hago.</h2>
         <p>Servicios para productoras, agencias, artistas y marcas que quieren integrar IA en pipelines visuales serios.</p>
       </div>
 
       <div class="services">
-        <article class="service reveal">
+        <article class="service reveal service-item" style="--d: 0.05s">
+          <div class="service__icon">
+            <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/><polygon points="17 5 17 19 23 17 23 7 17 5"/></svg>
+          </div>
           <h3 class="service__title">AI Video Direction</h3>
-          <p class="service__desc">Dirección y postproducción de piezas generativas con Seedance 2.5, Kling y Veo.</p>
-          <div class="service__tools"><span>Seedance 2.5</span><span>Kling 3.0</span><span>Veo 3.1</span><span>Runway</span><span>Sora</span></div>
+          <p class="service__desc">Dirección de video generativo con Kling 3.0, Veo 3.1, Luma Dream Machine y ComfyUI. Control de movimiento cinematográfico, consistencia de personajes y continuidad de escena.</p>
+          <div class="service__tools"><span>Kling 3.0</span><span>Veo 3.1</span><span>Luma</span><span>Runway</span><span>Sora</span></div>
         </article>
-        <article class="service reveal">
-          <h3 class="service__title">Generative VFX</h3>
-          <p class="service__desc">Compositing, simulaciones FX, integraciones live-action + generativo.</p>
-          <div class="service__tools"><span>Nuke</span><span>Houdini</span><span>After Effects</span><span>ComfyUI</span></div>
-        </article>
-        <article class="service reveal">
+        <article class="service reveal service-item" style="--d: 0.12s">
+          <div class="service__icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke-width="1.5"/></svg>
+          </div>
           <h3 class="service__title">Image Generation</h3>
-          <p class="service__desc">Workflows SDXL + Flux, ControlNet, LoRAs, IP-Adapter para producción.</p>
-          <div class="service__tools"><span>SDXL</span><span>Flux</span><span>ControlNet</span><span>LoRA</span></div>
+          <p class="service__desc">Flujos SDXL + Flux, ControlNet / OpenPose, Inpainting avanzado. Postproducción con After Effects, Premiere y Photoshop.</p>
+          <div class="service__tools"><span>SDXL</span><span>Flux</span><span>ControlNet</span><span>Midjourney</span></div>
         </article>
-        <article class="service reveal">
-          <h3 class="service__title">Real-Time & Mapping</h3>
-          <p class="service__desc">Live visuals, video mapping, instalaciones interactivas.</p>
-          <div class="service__tools"><span>TouchDesigner</span><span>Notch</span><span>MadMapper</span><span>GLSL</span></div>
+        <article class="service reveal service-item" style="--d: 0.19s">
+          <div class="service__icon">
+            <svg viewBox="0 0 24 24">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+              <line x1="12" y1="2" x2="12" y2="22" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3 class="service__title">Herramientas & Visión Artificial</h3>
+          <p class="service__desc">Construcción de herramientas a medida en Python para pipelines creativos: OpenPose, MediaPipe, estimación de pose, tracking de movimiento y automatización de flujos audiovisuales.</p>
+          <div class="service__tools"><span>Python</span><span>OpenPose</span><span>MediaPipe</span><span>Pose Estimation</span></div>
+        </article>
+        <article class="service reveal service-item" style="--d: 0.26s">
+          <div class="service__icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+          <h3 class="service__title">Real-Time & MadMapper</h3>
+          <p class="service__desc">Visuales en tiempo real, video mapping con MadMapper, instalaciones interactivas y generación de señales para outputs físicos.</p>
+          <div class="service__tools"><span>MadMapper</span><span>GLSL</span><span>Python</span><span>TouchDesigner</span></div>
         </article>
       </div>
     </div>
@@ -637,37 +912,72 @@
 
   <section class="s" id="about">
     <div class="s__inner">
-      <div class="s__head reveal">
-        <h2>Diseñador, técnico, narrador.</h2>
-        <p>Una práctica donde el código, la cámara y el color se vuelven una sola cosa.</p>
+      <div class="s__head reveal section-head" style="--d: 0.15s">
+        <h2>Director cinematográfico. Tecnólogo creativo.</h2>
+        <p>Más de 10 años dirigiendo lo que la cámara ve, ahora extendiendo ese ojo a lo que la IA genera.</p>
       </div>
 
-      <div class="about reveal">
+      <div class="about reveal" style="--d: 0.25s">
         <div class="about__visual">
           <img src="assets/img/yo.jpg" alt="Félix Vergara" class="about__portrait" />
           <div class="about__accent"></div>
         </div>
         <div>
           <dl class="about__meta">
-            <dt>Origin</dt><dd>Chileno en Bogotá, CO</dd>
-            <dt>Based</dt><dd>Bogotá, CO</dd>
-            <dt>Status</dt><dd>Available</dd>
-            <dt>Stack</dt><dd>ComfyUI · TouchDesigner · Seedance 2.5</dd>
-            <dt>Languages</dt><dd>ES · EN</dd>
+            <dt>Nombre</dt><dd>Félix Gustavo Vergara Durán</dd>
+            <dt>Basado</dt><dd>Bogotá, CO</dd>
+            <dt>Formación</dt><dd>Lic. Artes y Tecnologías de la Comunicación, Cine — UNIACC</dd>
+            <dt>Certificaciones</dt><dd>Hugging Face — Agentes de IA · Meta Spark AR</dd>
+            <dt>Idiomas</dt><dd>Español — Nativo · Inglés — Profesional</dd>
           </dl>
           <div class="about__body">
             <h3>Donde el resultado cinematográfico importa más que la herramienta.</h3>
             <p>
-              Soy <strong>Félix Vergara</strong>, AI Video Specialist y Generative VFX Artist. Mi trabajo vive en la intersección entre <strong>diseño visual, programación creativa y dirección cinematográfica</strong>, donde Seedance 2.5, ComfyUI, TouchDesigner, Kling, Veo y Nuke dejan de ser herramientas y se vuelven un solo medio.
+              Soy <strong>Félix Gustavo Vergara Durán</strong>, director audiovisual y tecnólogo creativo. Dirijo la intersección entre <strong>cinematografía tradicional, generación de video con IA y motion capture</strong>, donde Kling 3.0, Veo 3.1, ComfyUI, ControlNet, OpenPose y modelos de visión dejan de ser herramientas y se vuelven lenguaje.
             </p>
             <p>
-              He dirigido piezas para productoras, festivales e instalaciones inmersivas: cine, series, arte digital y nuevos medios. Mantengo <strong>AZUFR3</strong>, un proyecto autoral donde la IA generativa se cruza con una identidad visual punk, urbana y digital.
+              Más de 10 años de experiencia en cine y televisión (HBO, Warner Bros) trabajando en series como <em>Prófugos</em> y films como <em>Knock Knock</em> de Eli Roth. Hoy aplico ese criterio cinematográfico a pipelines de IA: diseño de movimiento de cámara, consistencia de personajes, tracking de actuación sintética y postproducción profesional con After Effects y Premiere.
             </p>
             <p>
-              Si tu proyecto necesita a alguien que piense como director y ejecute como ingeniero, y que entienda que el modelo todavía no reemplaza al ojo, hablemos.
+              Mantengo <strong>AZUFR3</strong>, un proyecto de nuevos medios donde la IA generativa se cruza con identidad visual punk, urbana y digital. Piezas expuestas en el Museo Gabriela Mistral (Vicuña, Chile) y finalistas en festivales internacionales de cine con IA.
             </p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s references" id="references">
+    <div class="s__inner">
+      <div class="s__head reveal section-head" style="--d: 0.1s">
+        <h2>Reconocimientos <span class="section-ribbon">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.3"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1"/>
+            <path d="M12 6l1.8 3.6L18 11l-2.7 2.4.7 4.1L12 16.3l-3.4 2L9.3 17.5 12 13.2 10.2 9.5 6.5 11l1.8-3.6z" fill="currentColor"/>
+          </svg>
+        </span></h2>
+        <p>Proyectos expuestos, festivales y selecciones.</p>
+      </div>
+      <div class="references__grid reveal" style="--d: 0.18s">
+        <article class="reference">
+          <div class="reference__year">2026</div>
+          <h3 class="reference__title">MISTRAL XR</h3>
+          <p class="reference__desc">Instalación audiovisual generada con IA. Expuesta en el Museo Gabriela Mistral de Vicuña, Chile. Representación hiperrealista de la última visita de Gabriela Mistral, con coherencia facial, cinematografía y dirección de actuación sintética. Repercusión en medios culturales internacionales.</p>
+          <div class="reference__meta">Museo Gabriela Mistral · Clarín · Patreon</div>
+        </article>
+        <article class="reference">
+          <div class="reference__year">2025</div>
+          <h3 class="reference__title">NUMINA</h3>
+          <p class="reference__desc">Cortometraje generado con IA. Finalista en el Festival Internacional de Cine con IA Project Odyssey (USA). Proyecto enfocado en narrativa cinematográfica hiperrealista, explorando dirección de luz, textura y actuación sintética bajo estándares broadcast.</p>
+          <div class="reference__meta">Project Odyssey · USA</div>
+        </article>
+        <article class="reference">
+          <div class="reference__year">2022</div>
+          <h3 class="reference__title">La Copia Feliz del Eden</h3>
+          <p class="reference__desc">Cortometraje generado con IA. Finalista en el Festival Internacional de Nuevos Medios Hub Musical (Valparaíso, Chile). Pieza desarrollada a partir de material de archivo del estallido social chileno (2019), reconfigurado mediante procesos generativos para construir una nueva narrativa visual.</p>
+          <div class="reference__meta">Hub Musical · Valparaíso</div>
+        </article>
       </div>
     </div>
   </section>
@@ -704,13 +1014,18 @@
   </footer>
 
   <script>
-    // Reveal on scroll
+    // Reveal on scroll: stagger + clip-path reveal
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        if (e.isIntersecting) {
+          const delay = e.target.style.getPropertyValue('--d') || '0s';
+          e.target.style.transitionDelay = delay;
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
 
     // Nav scroll: add backdrop to separate nav from content below hero
     let navScrolled = false;
