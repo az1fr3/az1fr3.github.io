@@ -1,0 +1,27 @@
+[1mRunning axe-core 3.5.6 in chrome-headless[22m
+/Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/node_modules/selenium-webdriver/lib/promise.js:2626
+        throw error;
+        ^
+
+SessionNotCreatedError: session not created: This version of ChromeDriver only supports Chrome version 152
+Current browser version is 151.0.7922.175 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+  (Driver info: chromedriver=152.0.7977.64 (506c834ecceaa943c5f41e6cfe7f68acb5c45346-refs/branch-heads/7977@{#1891}),platform=Mac OS X 15.7.7 arm64)
+    at Object.checkLegacyResponse (/Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/node_modules/selenium-webdriver/lib/error.js:546:15)
+    at parseHttpResponse (/Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/node_modules/selenium-webdriver/lib/http.js:509:13)
+    at /Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/node_modules/selenium-webdriver/lib/http.js:441:30
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+From: Task: WebDriver.createSession()
+    at thenableWebDriverProxy.createSession (/Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/node_modules/selenium-webdriver/lib/webdriver.js:769:24)
+    at thenableWebDriverProxy.createSession (/Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/node_modules/selenium-webdriver/chrome.js:761:15)
+    at createDriver (/Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/node_modules/selenium-webdriver/index.js:170:33)
+    at Builder.build (/Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/node_modules/selenium-webdriver/index.js:642:16)
+    at startDriver (/Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/lib/webdriver.js:37:26)
+    at testPages (/Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/lib/axe-test-urls.js:11:10)
+    at Object.<anonymous> (/Users/azufr3/.nvm/versions/node/v24.15.0/lib/node_modules/axe-cli/index.js:136:1)
+    at Module._compile (node:internal/modules/cjs/loader:1830:14)
+    at Object..js (node:internal/modules/cjs/loader:1961:10)
+    at Module.load (node:internal/modules/cjs/loader:1553:32) {
+  remoteStacktrace: ''
+}
+
+Node.js v24.15.0
